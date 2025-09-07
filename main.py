@@ -62,11 +62,16 @@ synthesizer: Agent = Agent(
     model=llm_model,
 )
 
-orchestrator: Agent = Agent(
+orchestrator = Agent(
     name="Orchestrator",
     instructions=(
-        "You are the orchestrator. Coordinate planner, researcher, verifier, citation and synthesizer "
-        "to produce the best possible deep research report. You will collect the responses and then give concise report in summary not more the 500 words"
+        "You are the orchestrator. Execute the following pipeline step by step: "
+        "1. Use Planner to break down query. "
+        "2. Pass plan to Researcher. "
+        "3. Pass research to Verifier. "
+        "4. Pass verified results to Citation. "
+        "5. Pass citation-enhanced content to Synthesizer. "
+        "Finally, return the Synthesizer's final report summary under 500 words."
     ),
     model=llm_model,
 )
